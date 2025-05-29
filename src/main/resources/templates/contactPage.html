@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout :: head}"><title>Contact List</title></head>
+<body>
+<div th:replace="~{layout :: menu}"></div>
+<div class="container mt-4">
+
+  <!-- Search form -->
+  <form th:action="@{/contact/search}" method="get" class="form-inline mb-3">
+    <input type="search" name="name" class="form-control mr-sm-2" placeholder="Search by name ..."
+           th:value="${param.name}" />
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  <!-- Success Message -->
+  <div th:if="${successMessage}" class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+    <span th:text="${successMessage}"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <!-- New Contact Button (Chỉ Admin thấy) -->
+  <div class="mb-3 text-right" sec:authorize="hasRole('ROLE_ADMIN')">
+    <a th:href="@{/contact/add}" class="btn btn-success">New contact</a>
+  </div>
+
+  <!-- Table -->
+  <h5>List of contacts</h5>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+    <tr>
+      <th>STT</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th sec:authorize="hasRole('ROLE_ADMIN')">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact, iterStat : ${contact}">
+      <td th:text="${iterStat.index + 1}">1</td>
+      <td th:text="${contact.name}">Name</td>
+      <td th:text="${contact.email}">Email</td>
+      <td th:text="${contact.phone}">Phone</td>
+      <td sec:authorize="hasRole('ROLE_ADMIN')">
+        <a th:href="@{'/contact/' + ${contact.id} + '/edit'}" class="text-primary mr-2">
+          <i class="fa fa-pencil"></i>
+        </a>
+        <form th:action="@{/contact/delete/{id}(id=${contact.id})}" method="post"
+              style="display:inline;"
+              onsubmit="return confirm('Are you sure you want to delete this contact?');">
+          <button type="submit" class="btn btn-link text-danger p-0">
+            <i class="fa fa-trash"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+
+<!-- JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+  setTimeout(function () {
+      $('.alert').alert('close');
+  }, 3000); // Tự đóng alert sau 3 giây
+</script>
+
+</body>
+</html>

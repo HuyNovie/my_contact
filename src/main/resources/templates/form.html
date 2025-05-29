@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head}"></head>
+
+<body>
+
+<div class="container mt-4">
+    <form th:action="@{/contact/save}" th:object="${contact}" method="post">
+        <h3 th:text="*{id} != null ? 'Edit Contact' : 'New Contact'">Contact Form</h3>
+        <input th:field="*{id}" type="hidden"/>
+
+        <!-- Name Field -->
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input th:field="*{name}" class="form-control" type="text" placeholder="Contact name"
+                   th:classappend="${#fields.hasErrors('name')} ? ' is-invalid'"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input th:field="*{email}" class="form-control" type="email" placeholder="Contact email"
+                   th:classappend="${#fields.hasErrors('email')} ? ' is-invalid'"  />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+        </div>
+
+        <!-- Phone Field -->
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input th:field="*{phone}" class="form-control" type="text" placeholder="Contact phone"
+                   pattern="[0-9]{10,11}" th:classappend="${#fields.hasErrors('phone')} ? ' is-invalid'" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a th:href="@{/contact}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+
+<footer th:replace="~{layout :: footer}"></footer>
+
+</body>
+</html>

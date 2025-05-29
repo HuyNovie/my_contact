@@ -1,0 +1,11 @@
+spring:
+  messages:
+    basename: messages
+
+NotEmpty:
+  contact:
+    name: Please input name
+Email:
+  contact:
+    email: Input email is wrong format
+

@@ -1,0 +1,163 @@
+
+body {
+    background: #fff;
+    min-height: 100vh;
+    margin: 0;
+    color: #333;
+    display: flex;
+    font-family: Arial, sans-serif;
+}
+
+.container-fluid {
+    display: flex;
+    min-height: 100vh;
+}
+
+.promo-section, .register-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.promo-section {
+    background: linear-gradient(135deg, #e0f7fa 0%, #f3e5f5 100%);
+    flex-direction: column;
+    text-align: center;
+}
+
+.promo-section h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.promo-section p {
+    font-size: 1rem;
+    color: #666;
+    margin: 1rem 0;
+}
+
+.promo-graphic {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    background: linear-gradient(135deg, #e0f7fa 0%, #f3e5f5 100%);
+    border-radius: 15px;
+    margin-top: 2rem;
+}
+
+.register-section {
+    background: #fff;
+    flex-direction: column;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 400px;
+}
+
+.register-card h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+.register-card p {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-control {
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 0.75rem 1rem;
+    background-color: #f9f9f9;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.password-wrapper {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+
+.btn-register {
+    background-color: #28a745;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem;
+    width: 100%;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-social {
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    padding: 0.75rem;
+    width: 48%;
+    background-color: #fff;
+    color: #333;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.btn-social img {
+    width: 20px;
+    margin-right: 0.5rem;
+}
+
+.login-link, .create-account {
+    font-size: 0.9rem;
+    text-align: center;
+    display: block;
+    margin-top: 1rem;
+    color: #00c4ff;
+}
+
+.login-link:hover, .create-account:hover {
+    text-decoration: underline;
+}
+
+/* Add label styling for accessibility */
+label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        flex-direction: column;
+    }
+
+    .promo-section, .register-section {
+        flex: none;
+        width: 100%;
+    }
+
+    .promo-section {
+        padding: 1rem;
+    }
+}
